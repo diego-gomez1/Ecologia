@@ -1,0 +1,621 @@
+/* ========================================
+   ECO-RETOS.CSS - ESTILOS MEJORADOS
+   Mantiene coherencia con style.css
+   ======================================== */
+
+/* ========================================
+   VARIABLES LOCALES
+   ======================================== */
+:root {
+    --level-easy: #2ecc71;
+    --level-medium: #f39c12;
+    --level-hard: #e74c3c;
+    --gradient-ocean: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   ESTRUCTURA PRINCIPAL
+   ======================================== */
+.eco-body {
+    background: var(--light-bg);
+    min-height: 100vh;
+    font-family: var(--font-primary);
+}
+
+.eco-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ========================================
+   HEADER DE LA PÁGINA
+   ======================================== */
+.eco-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.eco-title {
+    font-size: 2.5rem;
+    color: var(--ocean-principal);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.eco-title i {
+    color: var(--ocean-accent);
+    font-size: 2rem;
+}
+
+.eco-subtitle {
+    color: var(--gray-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ========================================
+   SELECTOR DE NIVEL
+   ======================================== */
+.level-selection {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--gray-light);
+}
+
+.selection-title {
+    text-align: center;
+    color: var(--ocean-principal);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.level-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.btn-level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    color: white;
+    font-weight: 600;
+    gap: 0.5rem;
+    border: 2px solid transparent;
+}
+
+.btn-level i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-level span {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.btn-level small {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.btn-level.facil {
+    background: linear-gradient(135deg, var(--level-easy), #27ae60);
+}
+
+.btn-level.medio {
+    background: linear-gradient(135deg, var(--level-medium), #e67e22);
+}
+
+.btn-level.dificil {
+    background: linear-gradient(135deg, var(--level-hard), #c0392b);
+}
+
+.btn-level:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: white;
+}
+
+.btn-level:active {
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   CAJA DEL QUIZ
+   ======================================== */
+.quiz-box {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.quiz-stats {
+    display: flex;
+    gap: 2rem;
+    background: var(--light-bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+}
+
+.question-counter, .score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ocean-principal);
+    font-weight: 600;
+}
+
+.question-counter i, .score-display i {
+    color: var(--ocean-accent);
+}
+
+.timer-container {
+    text-align: center;
+    background: linear-gradient(135deg, var(--ocean-principal), var(--ocean-accent));
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    color: white;
+    min-width: 100px;
+}
+
+.timer {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: white !important; /* Forzar color blanco */
+}
+
+.timer-label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* ========================================
+   BARRA DE PROGRESO
+   ======================================== */
+.progress-container {
+    background: var(--gray-light);
+    height: 10px;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ocean-accent), var(--ocean-hover));
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+/* ========================================
+   PREGUNTA
+   ======================================== */
+.question-container {
+    margin-bottom: 2rem;
+}
+
+.question-text {
+    font-size: 1.4rem;
+    color: var(--ocean-principal);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* ========================================
+   OPCIONES (GRID DE RESPUESTAS)
+   ======================================== */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.option-btn {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--ocean-accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.option-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--ocean-accent);
+    box-shadow: var(--shadow-md);
+}
+
+.option-btn:hover:not(:disabled)::before {
+    opacity: 1;
+}
+
+.option-prefix {
+    background: var(--light-bg);
+    color: var(--ocean-principal);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.option-text {
+    flex: 1;
+}
+
+/* Estados correcto/incorrecto */
+.option-btn.correct {
+    background: linear-gradient(135deg, var(--safe-green), #27ae60);
+    border-color: var(--safe-green);
+    color: white;
+    animation: pulse 0.5s;
+}
+
+.option-btn.correct .option-prefix {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.option-btn.incorrect {
+    background: linear-gradient(135deg, var(--danger-red), #c0392b);
+    border-color: var(--danger-red);
+    color: white;
+    animation: shake 0.5s;
+}
+
+.option-btn.incorrect .option-prefix {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ========================================
+   FEEDBACK
+   ======================================== */
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.3s;
+}
+
+.feedback.success {
+    background: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+    border-left: 4px solid #27ae60;
+}
+
+.feedback.error {
+    background: rgba(231, 76, 60, 0.2);
+    color: #c0392b;
+    border-left: 4px solid #c0392b;
+}
+
+.feedback.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   RESULTADOS
+   ======================================== */
+.result-box {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    animation: slideIn 0.5s ease-out;
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.result-icon {
+    font-size: 4rem;
+    color: var(--warning-yellow);
+    margin-bottom: 1rem;
+}
+
+.result-header h2 {
+    color: var(--ocean-principal);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.result-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    color: var(--gray-dark);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-value {
+    display: block;
+    color: var(--ocean-principal);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ========================================
+   INSIGNIAS (BADGES)
+   ======================================== */
+.badge-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 15px;
+    animation: popIn 0.6s;
+}
+
+.badge-container.junior {
+    background: linear-gradient(135deg, #cd7f32, #b87333);
+    color: white;
+}
+
+.badge-container.protector {
+    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+    color: white;
+}
+
+.badge-container.maestro {
+    background: linear-gradient(135deg, #ffd700, #daa520);
+    color: white;
+}
+
+.badge-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.badge-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.badge-description {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ========================================
+   BOTONES DE ACCIÓN - CORREGIDO
+   ======================================== */
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-restart, .btn-study {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    min-width: 200px;
+}
+
+.btn-restart {
+    background: var(--ocean-accent);
+    color: white;
+}
+
+.btn-study {
+    background: var(--ocean-principal);
+    color: white;
+}
+
+.btn-restart:hover, .btn-study:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-restart:hover {
+    background: var(--ocean-hover);
+}
+
+.btn-study:hover {
+    background: var(--ocean-hover);
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .eco-container {
+        padding: 0 1rem;
+    }
+
+    .eco-title {
+        font-size: 2rem;
+    }
+
+    .level-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quiz-stats {
+        justify-content: center;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-text {
+        font-size: 1.2rem;
+    }
+
+    .result-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .result-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-restart, .btn-study {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .eco-title {
+        font-size: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .quiz-box, .level-selection, .result-box {
+        padding: 1rem;
+    }
+
+    .quiz-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .timer-container {
+        align-self: center;
+    }
+}
